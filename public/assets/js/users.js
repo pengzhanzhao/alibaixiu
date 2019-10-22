@@ -104,3 +104,60 @@ $('#userBox').on('click', '#delete', function () {
     }
 
 })
+
+// 获取全选按钮
+var checkAll = $('#checkAll')
+var deleteMany = $('#deleteMany')
+checkAll.on('click', function () {
+    var status = $(this).prop('checked');
+    //    console.log(status);
+    if (status) {
+        $('#userBox').find('input').prop('checked', true)
+        deleteMany.show()
+    } else {
+        $('#userBox').find('input').prop('checked', false)
+        deleteMany.hide()
+    }
+})
+
+$('#userBox').on('click', '#checkOne', function () {
+    var inputs = $('#userBox').find('input');
+    if (inputs.length == inputs.filter(':checked').length) {
+        checkAll.prop('checked', true)
+    } else {
+        checkAll.prop('checked', false)
+    }
+
+    if (inputs.filter(':checked').length > 0) {
+        deleteMany.show()
+    } else {
+        deleteMany.hide()
+    }
+})
+
+deleteMany.on('click', function () {
+    var ids = [];
+    var ipts = $('#userBox').find('input').filter(':checked')
+    // console.log(ipts);
+
+    ipts.each(function (index, element) {
+        // console.log($(element));
+        ids.push($(element).attr('data-id'))
+    });
+    // console.log(ids);
+    if (confirm('您确定要批量删除吗？')) {
+        $.ajax({
+            type: 'delete',
+            url: '/users/' + ids.join('-'),
+            success: function (response) {
+                // console.log(response);
+                location.reload()
+            },
+            error: function (response) {
+                console.log(response);
+
+            }
+        })
+    }
+
+})
