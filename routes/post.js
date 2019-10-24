@@ -6,7 +6,7 @@ post.delete('/:id', require('./actions/post/findByIdAndDelete'));
 // 查询所有文章
 post.get('/', require('./actions/post/find'));
 // 查询文章数量
-post.get('/count', require(('./actions/post/count')));
+post.get('/count', require('./actions/post/count'));
 // 获取最新发布文章(按照发布时间排序)
 post.get('/lasted', require('./actions/post/lasted'));
 // 获取热门推荐(按钮评论数量排序)
