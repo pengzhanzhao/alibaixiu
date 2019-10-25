@@ -7,8 +7,9 @@
   <title>阿里百秀-发现生活，发现美!</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="assets/vendors/nprogress/nprogress.css">
+  <script src="assets/vendors/nprogress/nprogress.js"></script>
 </head>
-
 
 <body>
   <div class="wrapper">
@@ -16,7 +17,7 @@
       <ul>
         <li><a href="javascript:;"><i class="fa fa-glass"></i>奇趣事</a></li>
         <li><a href="javascript:;"><i class="fa fa-phone"></i>潮科技</a></li>
-        <li><a href="javascript:;"><i class="fa fa-fire"></i>会生活</a></li>
+        <li><a href="list.html"><i class="fa fa-fire"></i>会生活</a></li>
         <li><a href="javascript:;"><i class="fa fa-gift"></i>美奇迹</a></li>
       </ul>
     </div>
@@ -54,18 +55,10 @@
         </ul>
       </div>
     </div>
-
     <div class="content">
-      <div class="article" id="detailsBox">
-
-      </div>
-      <div id="commentsAdd">
-
-      </div>
-      <div class="panel hots">
-        <h3>热门推荐</h3>
-        <ul id="hotBox">
-        </ul>
+      <div class="panel new">
+        <h3 id="cateTitle"></h3>
+        <div id="entryBox"></div>
       </div>
     </div>
     <div class="footer">
@@ -75,17 +68,7 @@
 </body>
 <script src="assets/vendors/jquery/jquery.min.js"></script>
 <script src="assets/vendors/art-template/template-web.js"></script>
-<!-- 热门推荐拼接 -->
-<script type="text/html" id="hotTpl">
-  {{each data}}
-  <li>
-    <a href="detail.html?id={{$value._id}}">
-      <img src="{{$value.thumbnail}}" alt="">
-      <span>{{$value.title}}</span>
-    </a>
-  </li>
-  {{/each}}
-</script>
+<!-- 随机推荐 -->
 <script type="text/html" id="randomTpl">
   {{each data}}
   <li>
@@ -99,11 +82,13 @@
   </li>
   {{/each}}
 </script>
+<!-- 导航 -->
 <script type="text/html" id="navigationTpl">
   {{each data}}
   <li><a href="list.html?id={{$value._id}}"><i class="fa {{$value.className}}"></i>{{$value.title}}</a></li>
   {{/each}}
 </script>
+<!-- 评论 -->
 <script type="text/html" id="commentTpl">
   {{each data}}
   <li>
@@ -121,6 +106,7 @@
   </li>
   {{/each}}
 </script>
+<!-- 文章详情 -->
 <script type="text/html" id="entryTpl">
   {{each data}}
   <div class="entry">
@@ -150,54 +136,7 @@
   </div>
   {{/each}}
 </script>
-<!-- 文章详情 -->
-<script type="text/html" id="articlesTpl">
-  <div class="breadcrumb">
-    <dl>
-      <dt>当前位置：</dt>
-      <dd><a href="list.html?id={{category._id}}">{{category.title}}</a></dd>
-      <dd>{{title}}</dd>
-    </dl>
-  </div>
-  <h2 class="title">
-    <a href="javascript:;">{{title}}</a>
-  </h2>
-  <div class="meta">
-    <span>{{author.nickName}} 发布于 {{createAt.split('T')[0]}}</span>
-    <span>分类: <a href="list.html?id={{category._id}}">{{category.title}}</a></span>
-    <span>阅读: ({{meta.views}})</span>
-    <span>评论: ({{meta.comments}})</span>
-    <a href="javascript:;" id="clickPraise">赞</a>
-  </div>
-  {{content}}
-</script>
-<!-- 评论 -->
-<script type="text/html" id="commentsssTpl">
-  <style type="text/css">
-    .comment {
-      margin-bottom: 20px;
-    }
-    .comment textarea{
-      box-sizing: border-box;
-      padding: 10px;
-      width: 100%;
-      height: 80px;
-      display: block;
-    }
-    .comment input {
-      width: 100px;
-      height: 30px;
-      margin-top: 10px;
-    }
-  </style>
-  <div class="comment">
-    <form>
-      <textarea></textarea>
-      <input type="submit" value="提交评论">
-    </form>
-  </div>
-</script>
 <script src="assets/js/commonTpl.js"></script>
-<script src="assets/js/detail.js"></script>
+<script src="assets/js/search.js"></script>
 
 </html>

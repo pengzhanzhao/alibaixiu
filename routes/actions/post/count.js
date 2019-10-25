@@ -5,6 +5,5 @@ module.exports = async (req, res) => {
 	const postCount = await Post.countDocuments();
 	const draftCount = await Post.countDocuments({state: 0});
 	// 响应
-	
 	res.send({postCount, draftCount});
 }

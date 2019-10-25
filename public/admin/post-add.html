@@ -149,7 +149,7 @@
           <label for="category">所属分类</label>
           <select id="category" class="form-control" name="category">
             {{each cate}}
-            <option {{category == $value._id ? 'selected' : ''}} value="{{$value._id}}">{{$value.title}}</option>
+            <option {{category._id == $value._id ? 'selected' : ''}} value="{{$value._id}}">{{$value.title}}</option>
             {{/each}}
           </select>
         </div>
@@ -171,6 +171,7 @@
     </form>
   </script>
   <script src="../assets/js/post-add.js"></script>
+  <!-- <script src="../assets/js/commonTpl.js"></script> -->
 </body>
 
 </html>

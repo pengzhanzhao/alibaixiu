@@ -13,3 +13,28 @@ $('#loginout').on('click', function () {
         })
     }
 })
+
+$.ajax({
+    type: 'get',
+    url: '/users/' + userId,
+    success: function (response) {
+        console.log(response);
+        $('#userImg').attr('src', response.avatar);
+        $('#userName').text(response.nickName)
+    }
+})
+
+
+// function templateTpl(obj){
+//     $.ajax({
+//         type:'get',
+//         url:obj.url,
+//         success:function(response){
+//             // console.log(response);
+//            var html= template(obj.tpl,{data:response})
+//         //    console.log(html);
+//            $(obj.box).html(html)
+//         }
+//     })
+    
+// }
